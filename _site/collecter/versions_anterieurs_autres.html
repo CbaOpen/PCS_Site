@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Professions et Catégories Socioprofessionnelles</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <link rel="stylesheet" href="/assets/styles/theme.css">
+  <link rel="stylesheet" href="/assets/styles/font-awesome.css">
+  <link rel="stylesheet" href="/assets/styles/custom.css">
+
+  <script type="text/javascript" src="/assets/scripts/jquery.js"></script>
+  <script type="text/javascript" src="/assets/scripts/bootstrap.js"></script>
+  <script type="text/javascript" src="/assets/scripts/lunr.js"></script>
+  <script type="text/javascript" src="/assets/scripts/search.js"></script>
+  <script type="text/javascript" src="/assets/scripts/fullscreensearch.js"></script>
+</head>
+
+  <body>
+    <div class="container">
+
+      <div class="header">
+        <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><i class="fa fa-fire"></i> Professions et Catégories Socioprofessionnelles</a>
+          <!--<a class="navbar-brand" href="/"><img class="img-brand" src="/assets/images/starterlog.png"> Starter Log</a>-->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Découvrir<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header"><a href="/decouvrir/">Qu'est-ce que c'est ?</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/decouvrir/histoire">Principes, histoire, production, usages</a></li>
+                <li><a href="/decouvrir/guides">Les guides de documentation</a></li>
+                <li><a href="/decouvrir/#">L’articulation avec d’autres nomenclatures françaises</a></li>
+                <li><a href="/decouvrir/#">L’articulation avec d’autres nomenclatures étrangères</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explorer la PCS<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header"><a href="/explorer">Explorer la PCS</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">La PCS</a></li>
+                <li><a href="#">Les classes et sous-classes d'emploi</a></li>
+                <li><a href="#">Les groupes (et sous-groupes) de ménages</a></li>
+                <li><a href="#">Les rubriques ad-hoc de professions</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Décrire<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header"><a href="/decrire">Quelle est cette rubrique ?</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/decrire/portraits/">Portraits de groupes</a></li>
+                <li><a href="/decrire/societe/">La société en quelques thèmes</a></li>
+                <li><a href="/decrire/outils_pedagogiques/">Outils pédagogiques</a></li>
+                <li><a href="/decrire/statistiques/">Statistiques en ligne</a></li>
+                <li><a href="/decrire/micro-donnees/">Obtention de micro-données</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Coder<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header"><a href="/collecter">Quelle est cette rubrique ?</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/collecter/instruments_collecte/">Les instruments de collecte</a></li>
+                <li><a href="/collecter/outils_codification/">Les outils de codification</a></li>
+                <li><a href="/collecter/agregats_complementaires/">La création des agrégats complémentaires</a></li>
+                <li><a href="/collecter/creation_rubrique_ad_hoc/">La création de rubriques ad-hoc de profession</a></li>
+                <li><a href="/collecter/versions_anterieurs_autres/">L’utilisation de versions antérieures ou d’autres nomenclatures</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Informations pratiques<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header"><a href="/apropos">Qui sommes-nous ?</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Contacts</a></li>
+                <li><a href="#">Lettre d'information</a></li>
+                <li><a href="#">Gouvernance du site</a></li>
+                <li><a href="#">FAQ</a></li>
+              </ul>
+            </li>
+            <li><a href="#search">Rechercher</a></li>
+          </ul>
+
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <br>
+    <div id="search">
+      <form action="/search/" method="get">
+        <input type="search" id="search-box" name="query" placeholder="Recherche par mots clés">
+        <button type="submit" class="btn btn-lg btn-default"><i class="fa fa-lg fa-search"></i> Rechercher</button>
+      </form>
+    </div>
+
+      </div>
+
+      <div class="wrapper container">
+        <div class="container">
+
+<!-- Introduction Row -->
+    <div class="row">
+      <div class="col-sm-3">
+        <br>
+        <ul class="list-unstyled">
+            <li><a href="/collecter/versions_anterieurs_autres/versions_anterieures">Transcoder les versions antérieures des CSP-PCS</a></li>
+            <li><br></li>
+            <li><a href="#">Transcoder les Fap et le Rome</a></li>
+            <li><br></li>
+            <li><a href="#">Coder l'Isco</a></li>
+            <li><br></li>
+            <li><a href="#">Coder l'EseG</a></li>
+            <li><br></li>
+        </ul>
+        <br>
+    </div>
+        <div class="col-sm-9">
+            <h1 class="section-heading">L’utilisation de versions antérieures ou d’autres nomenclatures </h1>
+            <p class="section-paragraph">La nomenclature socio-professionnelle peut être utilisée pour travailler sur des enquêtes anciennes ou internationales, ou sur d’autres nomenclatures d’emploi françaises. Vous trouverez ici les informations permettant de le faire : </p>
+    <ul>
+   <li> <p class="section-paragraph">Un tableau de synthèse indiquant les possibilités (partielles ou totales) de comparaison temporelle et les matrices de transcodage (sous forme de tableurs exportables en différents formats) vers les nomenclatures historiques GS-CS-P (2003, 1982, 1954) ; </p> </li>
+   <li> <p class="section-paragraph">Des tables de passage (partielles) de la PCS 2020 vers les familles professionnelles (Fap) de la Dares et le Rome de Pôle emploi ; </p> </li>
+<li> <p class="section-paragraph">Une interface de collecte et de codification directe (avec les programmes correspondants, exportables en différents langage) pour coder la nomenclature internationale des professions (Isco) du BIT et les groupes socio-économiques européens (ESeG) d’Eurostat.</p> </li>    
+   </div>
+
+    </div>
+    <!-- /.row -->
+    <hr>
+
+</div>
+<!-- /.container -->
+      </div>
+
+      <div class="footer">
+        <div class="container">
+    <div class="row-footer">
+            <div class="col-xs-2">
+                <ul class="list-unstyled">
+                    <li><a href="/decouvrir/"><i class="fa fa-book"></i> Découvrir la PCS</a><li>
+                    <li><a href="/decouvrir/histoire/">Histoire</a></li>
+                    <li><a href="/decouvrir/guides/">Guides de documentation</a></li>
+                    <li><a href="#">Nomenclatures françaises</a></li>
+                    <li><a href="#">Nomenclatures étrangères</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-3">
+                <ul class="list-unstyled">
+                    <li><a href="/explorer"><i class="fa fa-book"></i> Explorer la PCS</a><li>
+                    <li><a href="#">La PCS</a></li>
+                    <li><a href="#">Les classes et sous-classes d'emploi</a></li>
+                    <li><a href="#">Les groupes (et sous-groupes) de ménages</a></li>
+                    <li><a href="#">Les rubriques ad-hoc de professions</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-2">
+                <ul class="list-unstyled">
+                    <li><a href="/decrire"><i class="fa fa-cogs"></i> Décrire et outils</a><li>
+                    <li><a href="/decrire/portraits/">Portraits de groupes</a></li>
+                    <li><a href="/decrire/societe/">La société en quelques thèmes</a></li>
+                    <li><a href="/decrire/outils_pedagogiques/">Outils pédagogiques</a></li>
+                    <li><a href="/decrire/statistiques/">Statistiques en ligne</a></li>
+                    <li><a href="/decrire/micro-donnees/">Obtention de micro-données</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-3">
+                <ul class="list-unstyled">
+                    <li><a href="/collecter"><i class="fa fa-file-text"></i> Collecter, coder</a><li>
+                    <li><a href="/collecter/instruments_collecte/">Les instruments de collecte</a></li>
+                    <li><a href="/collecter/outils_codification/">Les outils de codification</a></li>
+                    <li><a href="/collecter/agregats_complementaires/">La création des agrégats complémentaires</a></li>
+                    <li><a href="/collecter/creation_rubrique_ad_hoc/">La création de rubriques ad-hoc de profession</a></li>
+                    <li><a href="/collecter/versions_anterieurs_autres/">L’utilisation de versions antérieures ou d’autres nomenclatures</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-2">
+                <ul class="list-unstyled">
+                    <li><a href="/apropos"><i class="fa fa-info"></i> Informations pratiques</a><li>
+                    <li><a href="/apropos">Qui sommes-nous ?</a></li>
+                    <li><a href="#">Contacts</a></li>
+                    <li><a href="#">Lettre d'information</a></li>
+                    <li><a href="#">Gouvernance du site</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
