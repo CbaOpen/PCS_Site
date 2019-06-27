@@ -1,3 +1,24 @@
+/*Tableau contenant toutes les prefessions du bâtiment */
+var libprof = [];
+/* */
+$(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: "/docs/libprofbtp.csv",
+        dataType: "text",
+        success: function(data) {processData(data);}
+     });    
+});
+
+/* Récupère les données du fichier csv contenant les profesions */
+function processData(allText) {
+   var libproftmp = allText.split(',')
+   for(var i=0; i<libproftmp.length; i++)
+      libprof.push(libproftmp[i])
+}
+
+
+
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
@@ -94,42 +115,5 @@ function autocomplete(inp, arr) {
       closeAllLists(e.target);
   });
 }
-
-/*Tableau contenant tous les métiers du bâtiment */
-var libprof = [];
-/* */
-$(document).ready(function() {
-    $.ajax({
-        type: "GET",
-        url: "/docs/btpear2017_codifie_R.csv",
-        dataType: "text",
-        success: function(data) {processData(data);}
-     });
-    
-    
-});
-
-/* Récupère les données du fichier csv contenant les métiers */
-function processData(allText) {
-    var allTextLines = allText.split(/\r\n|\n/);
-    var headers = allTextLines[0].split(',');
-    var jobs = [];
-
-    for (var i=1; i<allTextLines.length; i++) {
-        var data = allTextLines[i].split(',');
-        if (data.length == headers.length) {
-
-            var tarr = {};
-            for (var j=0; j<headers.length; j++) {
-                //tarr.push(headers[j]+":"+data[j]);
-                tarr[headers[j]] = data[j].substring(1, data[j].length)
-            }
-            jobs.push(tarr);
-        }
-    }
-    for(var i=0; i<jobs.length; i++)
-      libprof.push(jobs[i][headers[3]])
-}
-
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), libprof);
