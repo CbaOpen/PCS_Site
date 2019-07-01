@@ -1,3 +1,24 @@
+/*Tableau contenant toutes les prefessions du bâtiment */
+var libprof = [];
+/* */
+$(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: "/docs/libprofbtp.csv",
+        dataType: "text",
+        success: function(data) {processData(data);}
+     });    
+});
+
+/* Récupère les données du fichier csv contenant les profesions */
+function processData(allText) {
+   var libproftmp = allText.split(',')
+   for(var i=0; i<libproftmp.length; i++)
+      libprof.push(libproftmp[i])
+}
+
+
+
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
@@ -16,7 +37,13 @@ function autocomplete(inp, arr) {
       /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
       /*for each item in the array...*/
+      var valSplit = arr[0].split(' ')
+//        console.log(valSplit)
+
       for (i = 0; i < arr.length; i++) {
+        valSplit = arr[i].split(' ')
+        //console.log(valSplit)
+        //console.log(valSplit.length)
         /*check if the item starts with the same letters as the text field value:*/
         if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
@@ -35,6 +62,26 @@ function autocomplete(inp, arr) {
               closeAllLists();
           });
           a.appendChild(b);
+        }
+        else if(valSplit.length > 1){
+          //console.log("here")
+          for(j=1; j<valSplit.length; j++){
+            if(valSplit[j].substr(0, val.length).toUpperCase() == val.toUpperCase()){
+              /*create a DIV element for each matching element:*/
+              b = document.createElement("DIV");
+              /* Write words before matching element */
+              b.innerHTML = ""
+              for(k=0; k<j; k++)
+                b.innerHTML += valSplit[k] + " ";
+              /*make the matching letters bold:*/
+              b.innerHTML += "<strong>" + valSplit[j].substr(0, val.length) + "</strong>";
+              b.innerHTML += valSplit[j].substr(val.length);
+              for(k=j+1; k<valSplit.length; k++)
+                b.innerHTML += valSplit[k] + " ";
+              a.appendChild(b);
+              break;
+            }
+          }
         }
       }
   });
@@ -95,41 +142,6 @@ function autocomplete(inp, arr) {
   });
 }
 
-/*Tableau contenant tous les métiers du bâtiment */
-var libprof = [];
-/* */
-$(document).ready(function() {
-    $.ajax({
-        type: "GET",
-        url: "/docs/btpear2017_codifie_R.csv",
-        dataType: "text",
-        success: function(data) {processData(data);}
-     });
-    
-    
-});
-
-/* Récupère les données du fichier csv contenant les métiers */
-function processData(allText) {
-    var allTextLines = allText.split(/\r\n|\n/);
-    var headers = allTextLines[0].split(',');
-    var jobs = [];
-
-    for (var i=1; i<allTextLines.length; i++) {
-        var data = allTextLines[i].split(',');
-        if (data.length == headers.length) {
-
-            var tarr = {};
-            for (var j=0; j<headers.length; j++) {
-                //tarr.push(headers[j]+":"+data[j]);
-                tarr[headers[j]] = data[j].substring(1, data[j].length)
-            }
-            jobs.push(tarr);
-        }
-    }
-    for(var i=0; i<jobs.length; i++)
-      libprof.push(jobs[i][headers[3]])
-}
-
+var testArr = ["FORREUR", "AIDE FORREUR"]
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), libprof);
