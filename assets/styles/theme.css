@@ -262,12 +262,12 @@ th {
   box-sizing: border-box;
 }
 html {
-  font-size: 62.5%;
+  font-size: 90%/*62.5%*/;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
   font-family: 'Lucida Console', Monaco;
-  font-size: 14px;
+  font-size: 16px/*14px*/;
   line-height: 1.428571429;
   color: #333333;
   background-color: #ffffff;
@@ -577,7 +577,7 @@ ol ol {
   color:/*black;*/#FFE066;
 }
 .list-unstyled > li > a {
-  color: /*#ffffff;black;*/#FFE066;
+  color: #FFE066;
 }
 .list-inline {
   padding-left: 0;
