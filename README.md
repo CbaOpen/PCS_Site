@@ -2,7 +2,7 @@
 
 ## Présentation
 
-Ce site est une version bêta d'un site pour la PCS. Il est généré sous Jekyll qui est une générateur de site static dévellopé sous Ruby.
+Ce site est une version bêta d'un site pour la PCS. Il est généré sous Jekyll qui est un générateur de site static développé sous Ruby.
 
 ## Installation de l'environnement
 
@@ -14,16 +14,28 @@ Vous pouvez suivre le guide d'installation présent sur ce site (https://jekyllr
 
     gem install jekyll bundler
 
+## Ouverture du terminal dans le bon dossier
+
++ Soit ouvrir le terminal puis se déplacer jusqu'au bon dossier jusqu'au bon dossier avec la commande cd jusqu'à :
+
+        cd PCS_Site/
+        
+ + Soit ouvrir le terminal directement dans le bon dossier :
+    + Sur Linux : clic droit -> Ouvrir le terminal
+    + Sur Windows : shift + clic droit -> Ouvrir le powerShell
+    
+    
 ## Lancement du serveur
 
-Pour lancer le serveur pour la première fois :
-    
-    cd PCS_Site/
-    bundle exec jekyll serve
+Dans le terminal précédemment lancé :
+
+        bundle exec jekyll serve
     
 Vous pouvez ensuite lancer le serveur, toujours dans le dossier PCS_Site/, avec la commande
     
     jekyll serve
     
 Vous pouvez acceder au site via l'adresse http://localhost:4000
+
+Il faut garder le terminal ouvert tant qu'on navigue sur le site.
 
