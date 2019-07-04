@@ -2,19 +2,21 @@
 <html>
   {% include head.html %}
   <body>
+    <div class="container-main">
     <div class="container">
 
       <div class="header">
         {% include header.html %}
       </div>
 
-      <div class="wrapper container">
+      <div class="wrapper container-no-padding">
         <section>
         <div class="container">
         <br>
         <div class="row">
           <br>
           {{ content }}
+          <br>
           <hr>
         </div>
         </div>
@@ -26,6 +28,7 @@
       </div>
 
     </div>
+  </div>
 
   </body>
 </html>
