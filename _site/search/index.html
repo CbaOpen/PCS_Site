@@ -21,6 +21,7 @@
 </head>
 
   <body>
+    <div class="container-main">
     <div class="container">
 
       <div class="header">
@@ -115,8 +116,13 @@
 
       </div>
 
-      <div class="wrapper container">
-        <form action="/search/" method="get">
+      <div class="wrapper container-no-padding">
+        <section>
+        <div class="container">
+        <br>
+        <div class="row">
+          <br>
+          <form action="/search/" method="get">
   <label for="search-box">Search</label>
   <input type="text" id="search-box" name="query">
   <input type="submit" value="search">
@@ -168,10 +174,15 @@
 <script src="/assets/scripts/lunr.js"></script>
 <script src="/assets/scripts/search.js"></script>
 
+          <br>
+          <hr>
+        </div>
+        </div>
+        </section>
       </div>
 
       <div class="footer">
-        <div class="container">
+        <div class="container-no-padding">
     <div class="row-footer">
             <div class="col-xs-2">
                 <ul class="list-unstyled">
@@ -230,6 +241,7 @@
       </div>
 
     </div>
+  </div>
 
   </body>
 </html>
