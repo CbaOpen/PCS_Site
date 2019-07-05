@@ -748,13 +748,6 @@ pre code {
   padding-right: 15px;
   background-color: #F5F5F5;
 }
-.container-background {
-  background-color: #F5F5F5;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
 .container-no-padding {
   margin-right: auto;
   margin-left: auto;
@@ -788,7 +781,7 @@ pre code {
   /*background-color:#FFE066;*/
 }
 .row-footer {
-  background-color:/*#FFE066;*/#50514f;
+  background-color:/*#FFE066;#50514f*/#8A8B88;
 }
 .row > div > p {
   color:black;
@@ -3966,12 +3959,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: /*#FFE066;*/#50514f;
+  background-color: /*#FFE066;#50514f*/#8A8B88;
   border-color: #3f403f;
   color:black;
 }
 .navbar-default .navbar-brand {
-  color: /*#ffffff;black;*/#FFE066;
+  color: /*#ffffff;black;#FFE066*/#E4B419;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
