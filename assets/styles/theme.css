@@ -3046,11 +3046,13 @@ input[type="button"].btn-block {
 }
 .dropdown {
   position: relative;
+  display: inline-block
 }
 .dropdown-toggle:focus {
   outline: 0;
 }
 .dropdown-menu {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -3089,6 +3091,8 @@ input[type="button"].btn-block {
   color: #333333;
   white-space: nowrap;
 }
+.dropdown:hover .dropdown-menu {display: block;}
+
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   text-decoration: none;
@@ -4025,7 +4029,7 @@ font-weight:bold;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
+/*.navbar-default .navbar-nav > .active > a:focus*/ {
   color: /*#ffe066;*/#ffffff;
   background-color: /*#3f403f*/ transparent;
   font-weight: bold;
@@ -4052,7 +4056,7 @@ font-weight:bold;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus {
+/*.navbar-default .navbar-nav > .open > a:focus */{
   /* menu déroulant du header -> quand on a cliqué sur un des titres */
   color: /*#ffe066;*/#ffffff;
   background-color: /*#3f403f*/ #943310;
