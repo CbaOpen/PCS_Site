@@ -591,10 +591,10 @@ ol ol {
 .list-unstyled {
   padding-left: 0;
   list-style: none;
-  color:/*black;*/#FFE066;
+  color:/*black;#FFE066*/#ffffff;
 }
 .list-unstyled > li > a {
-  color: #ffd900;
+  color: /*#ffd900*/#ffffff;
 }
 .list-inline {
   padding-left: 0;
@@ -796,7 +796,7 @@ pre code {
   /*background-color:#FFE066;*/
 }
 .row-footer {
-  background-color:/*#FFE066;#50514f;#8A8B88*/#949494;
+  background-color:/*#FFE066;#50514f;#8A8B88 #949494*/ #B03D14;
   /*footer */
 }
 .row > div > p {
