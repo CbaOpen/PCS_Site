@@ -19,7 +19,7 @@ function processData(allText) {
 
 
 
-function autocomplete(inp, arr) {
+function autocomplete(inp, arr, min_letters) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
@@ -30,7 +30,7 @@ function autocomplete(inp, arr) {
       /*close any already open lists of autocompleted values*/
       closeAllLists();
       if (!val) { return false;}
-        if(val.length >= 3){
+        if(val.length >= min_letters){
         currentFocus = -1;
         /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
@@ -39,19 +39,20 @@ function autocomplete(inp, arr) {
         /*append the DIV element as a child of the autocomplete container:*/
         this.parentNode.appendChild(a);
         /*for each item in the array...*/
-        var valSplit = arr[0].split(' ')
+        //var valSplit = arr[0].split(' ')
 
-        for (i = 0; i < arr.length; i++) {
-          valSplit = arr[i].split(' ')
+        //for (i = 0; i < arr.length; i++) {
+        for (var elem in arr){
+          var valSplit = arr[elem].split(' ')
           /*check if the item starts with the same letters as the text field value:*/
-          if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          if (arr[elem].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
             /*create a DIV element for each matching element:*/
             b = document.createElement("DIV");
             /*make the matching letters bold:*/
-            b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-            b.innerHTML += arr[i].substr(val.length);
+            b.innerHTML = "<strong>" + arr[elem].substr(0, val.length) + "</strong>";
+            b.innerHTML += arr[elem].substr(val.length);
             /*insert a input field that will hold the current array item's value:*/
-            b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+            b.innerHTML += "<input type='hidden' value='" + arr[elem] + "'>";
             /*execute a function when someone clicks on the item value (DIV element):*/
             b.addEventListener("click", function(e) {
                 /*insert the value for the autocomplete text field:*/
@@ -78,7 +79,7 @@ function autocomplete(inp, arr) {
                 for(k=j+1; k<valSplit.length; k++)
                   b.innerHTML += valSplit[k] + " ";
                 /*insert a input field that will hold the current array item's value:*/
-                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                b.innerHTML += "<input type='hidden' value='" + arr[elem] + "'>";
                 /*execute a function when someone clicks on the item value (DIV element):*/
                 b.addEventListener("click", function(e) {
                     /*insert the value for the autocomplete text field:*/
@@ -154,6 +155,12 @@ function autocomplete(inp, arr) {
 
 var non_signif_words = ["À","AU","D'UN","DANS","DE","DES","DU","EN","ET","LA","LE","OU","SUR","AUX","POUR","AVEC", "CHEZ","D’UNE","D’","L’","PAR",
                       "(",")","/","-"]
+var nat_prof = {'priv_cad': "Salarié du privé cadre", 'priv_tec' : "Salarié du privé technicien", 'priv_am' : "Salarié du privé agent de maintenance", 'priv_emp' : "Salarié du privé, employé",
+				'priv_oq' : "Salarié du privé, ouvrier qualifié", 'priv_onq' : "Salarié du privé, ouvrier non qualifié", 'priv_nr' : "Salarié du privé, valeur par défaut",
+				'pub_catA' : "Salarié du public de catégorie A", 'pub_catB' : "Salarié du public de catégorie B", 'pub_catC' : "Salarié du public de catégorie C",
+				'pub_nr' : "Salarié du public, valeur par défaut", 'sal_par' : "Salarié particulier", 'inde_0_9' : "Non salarié, entreprise de moins de 10 employés",
+				'inde_10_49' : "Non salarié, entreprise d’entre 10 et 49 employés", 'inde_50_499' : "Non salarié, entreprise d’entre 50 et 499 employés",'inde>500' : "Non salarié, entreprise de plus de 500 employés",
+				'inde_nr' : "Non salarié, valeur par défaut",'aid_fam' : "Aide familial",'ssvaran' : "Autre"}
 
 function is_significant(word, tab_non_signif){
   for(var i=0; i<tab_non_signif.length; i++){
@@ -164,4 +171,5 @@ function is_significant(word, tab_non_signif){
 }
 var testArr = ["est aux miel", "test"]
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), libprof);
+autocomplete(document.getElementById("myInput"), libprof, 3);
+autocomplete(document.getElementById("natprof"), nat_prof, 0)
