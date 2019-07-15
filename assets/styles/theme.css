@@ -397,14 +397,19 @@ h6 .small,
   color: #999999;
 }
 h1,
-.h1,
+.h1
+ {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
 h2,
 .h2,
 h3,
-.h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
+.h3{
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
+
 h1 small,
 .h1 small,
 h2 small,
@@ -579,6 +584,65 @@ ul ol,
 ol ol {
   margin-bottom: 0;
 }
+
+/* Pour liste de classes */
+.list-imbrique-J{
+	list-style-type: none;
+	counter-reset: section 8;
+	margin-bottom: 5px;
+}
+
+.list-imbrique-Lettres{
+	list-style-type: none;
+	counter-reset: section;
+	margin-bottom: 5px;
+}
+
+.list-imbrique-1 {
+	counter-reset: subsection;
+	list-style-type: none;
+	
+}
+.list-imbrique-Lettres > li{
+	margin-bottom: 5px;
+ }
+.list-imbrique-Lettres > li::before {
+	counter-reset: subsection;
+	counter-increment: section; 
+	content: counter(section, upper-latin) ". ";
+	font-weight:bold;
+}
+
+.list-imbrique-J > li::before {
+	counter-reset: subsection;
+	counter-increment: section; 
+	content: counter(section, upper-latin) ". ";
+	font-weight:bold;
+}
+
+.list-imbrique-1 > li::before {
+	counter-increment: subsection;
+	content: counter(section, upper-latin) "." counter(subsection) ". ";
+}
+
+
+.list-pages-accueil {
+  padding-left: 0;
+  list-style: none;
+  color:/*black;#FFE066*/#ffffff;
+  font-size: 21px;
+}
+
+.list-footer{
+	line-height: 1;
+}
+
+.list-footer > li{
+	margin-bottom: 7px;
+}
+
+
+
 .list-bandeau {
   padding-left: 0;
   list-style: none;
@@ -591,10 +655,10 @@ ol ol {
 .list-unstyled {
   padding-left: 0;
   list-style: none;
-  color:/*black;*/#FFE066;
+  color:/*black;#FFE066*/#ffffff;
 }
 .list-unstyled > li > a {
-  color: #ffd900;
+  color: /*#ffd900*/#ffffff;
 }
 .list-inline {
   padding-left: 0;
@@ -796,12 +860,31 @@ pre code {
   /*background-color:#FFE066;*/
 }
 .row-footer {
-  background-color:/*#FFE066;#50514f;#8A8B88*/#949494;
+  background-color:/*#FFE066;#50514f;#8A8B88 #949494*/ #B03D14;
   /*footer */
 }
 .row > div > p {
   color:black;
 }
+
+/* colonnes footer*/
+
+.col-footer-1, .col-footer-2{
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+}
+.col-footer-1 {
+  width: 16.666666666666664%;
+}
+
+.col-footer-2 {
+  width: 20.833333333333333%;
+}
+
+
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
