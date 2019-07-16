@@ -23,7 +23,7 @@ input[type=text] {
   width: 100%;
 }
 
-input[type=submit] {
+input[type=button] {
   background-color: DodgerBlue;
   color: #fff;
   cursor: pointer;
