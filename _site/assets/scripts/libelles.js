@@ -1,6 +1,24 @@
 /*Tableau contenant toutes les prefessions du bâtiment */
 var libprof = [];
-/* */
+/* tableau des mots non signifiants */
+var non_signif_words = ["À","AU","D'UN","DANS","DE","DES","DU","EN","ET","LA","LE","OU","SUR","AUX","POUR","AVEC", "CHEZ","D’UNE","D’","L’","PAR",
+                      "(",")","/","-"]
+/* Cadre de la profession */
+var cadre_prof = {'priv_cad': "Salarié du privé cadre", 'priv_tec' : "Salarié du privé technicien", 'priv_am' : "Salarié du privé agent de maintenance", 'priv_emp' : "Salarié du privé, employé",
+				'priv_oq' : "Salarié du privé, ouvrier qualifié", 'priv_onq' : "Salarié du privé, ouvrier non qualifié", 'priv_nr' : "Salarié du privé, valeur par défaut",
+				'pub_catA' : "Salarié du public de catégorie A", 'pub_catB' : "Salarié du public de catégorie B", 'pub_catC' : "Salarié du public de catégorie C",
+				'pub_nr' : "Salarié du public, valeur par défaut", 'sal_par' : "Salarié particulier", 'inde_0_9' : "Non salarié, entreprise de moins de 10 employés",
+				'inde_10_49' : "Non salarié, entreprise d’entre 10 et 49 employés", 'inde_50_499' : "Non salarié, entreprise d’entre 50 et 499 employés",'inde>500' : "Non salarié, entreprise de plus de 500 employés",
+				'inde_nr' : "Non salarié, valeur par défaut",'aid_fam' : "Aide familial",'ssvaran' : "Autre"}
+/* Cadre de la profession inversé */
+var cadre_prof_inv = {"Salarié du privé cadre":'priv_cad', "Salarié du privé technicien":'priv_tec', "Salarié du privé agent de maintenance":'priv_am', "Salarié du privé, employé":'priv_emp',
+				"Salarié du privé, ouvrier qualifié":'priv_oq', "Salarié du privé, ouvrier non qualifié":'priv_onq', "Salarié du privé, valeur par défaut":'priv_nr',
+				"Salarié du public de catégorie A":'pub_catA', "Salarié du public de catégorie B":'pub_catB', "Salarié du public de catégorie C":'pub_catC',
+				"Salarié du public, valeur par défaut":'pub_nr', "Salarié particulier":'sal_par', "Non salarié, entreprise de moins de 10 employés":'inde_0_9',
+				"Non salarié, entreprise d’entre 10 et 49 employés":'inde_10_49', "Non salarié, entreprise d’entre 50 et 499 employés":'inde_50_499',"Non salarié, entreprise de plus de 500 employés":'inde>500',
+				"Non salarié, valeur par défaut":'inde_nr',"Aide familial":'aid_fam',"Autre":'ssvaran'}
+
+/* Récupère le fichier des professions lors du chargement de la page */
 $(document).ready(function() {
     $.ajax({
         type: "GET",
@@ -18,68 +36,60 @@ function processData(allText) {
 }
 
 
-
-function autocomplete(inp, arr) {
-  /*the autocomplete function takes two arguments,
-  the text field element and an array of possible autocompleted values:*/
+/* Autocompletion 
+	inp : input rentré par l'utilisateur dans la barre de recherche 
+	arr : Le tableau dans lequel chercher les mots
+	min_letters : nombre minimum de lettre que l'utilisateur doit rentrer avant que l'autocomletion se lance */
+function autocomplete(inp, arr, min_letters) {
   var currentFocus;
-  /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
-      /*close any already open lists of autocompleted values*/
+      
+      /* Ferme toutes les listes ouvertes de valeurs autocomplétées */
       closeAllLists();
       if (!val) { return false;}
-      currentFocus = -1;
-      /*create a DIV element that will contain the items (values):*/
-      a = document.createElement("DIV");
-      a.setAttribute("id", this.id + "autocomplete-list");
-      a.setAttribute("class", "autocomplete-items");
-      /*append the DIV element as a child of the autocomplete container:*/
-      this.parentNode.appendChild(a);
-      /*for each item in the array...*/
-      var valSplit = arr[0].split(' ')
-//        console.log(valSplit)
+        if(val.length >= min_letters){
+        currentFocus = -1;
+        /* Crée une balise div qui contiendra toutes les valeurs autocomplétées */
+        a = document.createElement("DIV");
+        a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("class", "autocomplete-items");
+        this.parentNode.appendChild(a);
 
-      for (i = 0; i < arr.length; i++) {
-        valSplit = arr[i].split(' ')
-        //console.log(valSplit)
-        //console.log(valSplit.length)
-        /*check if the item starts with the same letters as the text field value:*/
-        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-          /*create a DIV element for each matching element:*/
-          b = document.createElement("DIV");
-          /*make the matching letters bold:*/
-          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-          b.innerHTML += arr[i].substr(val.length);
-          /*insert a input field that will hold the current array item's value:*/
-          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-          /*execute a function when someone clicks on the item value (DIV element):*/
-          b.addEventListener("click", function(e) {
-              /*insert the value for the autocomplete text field:*/
-              inp.value = this.getElementsByTagName("input")[0].value;
-              /*close the list of autocompleted values,
-              (or any other open lists of autocompleted values:*/
-              closeAllLists();
-          });
-          a.appendChild(b);
-        }
-        else if(valSplit.length > 1){
-          //console.log("here")
-          for(j=1; j<valSplit.length; j++){
-            if(valSplit[j].substr(0, val.length).toUpperCase() == val.toUpperCase()){
-              /*create a DIV element for each matching element:*/
-              b = document.createElement("DIV");
-              /* Write words before matching element */
-              b.innerHTML = ""
-              for(k=0; k<j; k++)
-                b.innerHTML += valSplit[k] + " ";
-              /*make the matching letters bold:*/
-              b.innerHTML += "<strong>" + valSplit[j].substr(0, val.length) + "</strong>";
-              b.innerHTML += valSplit[j].substr(val.length);
-              for(k=j+1; k<valSplit.length; k++)
-                b.innerHTML += valSplit[k] + " ";
-              a.appendChild(b);
-              break;
+        for (var elem in arr){
+          var valSplit = arr[elem].split(' ')
+          /* Teste pour le début des mots uniquement */
+          if (is_significant(val, non_signif_words) && arr[elem].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+            b = document.createElement("DIV");
+            b.innerHTML = "<strong>" + arr[elem].substr(0, val.length) + "</strong>";
+            b.innerHTML += arr[elem].substr(val.length);
+            b.innerHTML += "<input type='hidden' value='" + arr[elem] + "'>";
+            b.addEventListener("click", function(e) {
+                inp.value = this.getElementsByTagName("input")[0].value;
+                closeAllLists();
+            });
+            a.appendChild(b);
+          }
+          /* Teste pour tous les autres mots du tableau si l'input matche */
+          else if(valSplit.length > 1){
+            for(j=1; j<valSplit.length; j++){
+              if(is_significant(valSplit[j], non_signif_words) && valSplit[j].substr(0, val.length).toUpperCase() == val.toUpperCase()){
+                b = document.createElement("DIV");
+                b.innerHTML = ""
+                for(k=0; k<j; k++)
+                  b.innerHTML += valSplit[k] + " ";
+                b.innerHTML += "<strong>" + valSplit[j].substr(0, val.length) + "</strong>";
+                b.innerHTML += valSplit[j].substr(val.length) + " ";
+                for(k=j+1; k<valSplit.length; k++)
+                  b.innerHTML += valSplit[k] + " ";
+                b.innerHTML += "<input type='hidden' value='" + arr[elem] + "'>";
+                b.addEventListener("click", function(e) {
+                    inp.value = this.getElementsByTagName("input")[0].value;
+                    closeAllLists();
+                });
+                a.appendChild(b);
+                break;
+              }
             }
           }
         }
@@ -142,6 +152,48 @@ function autocomplete(inp, arr) {
   });
 }
 
-var testArr = ["FORREUR", "AIDE FORREUR"]
-/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), libprof);
+
+
+function is_significant(word, tab_non_signif){
+  for(var i=0; i<tab_non_signif.length; i++){
+    if(tab_non_signif[i] == word.toUpperCase())
+      return false;
+  }
+  return true;
+}
+var testArr = ["est aux miel", "test"]
+/*initiate the autocomplete function on the "prof" element, and pass along the libprof array as possible autocomplete values:*/
+autocomplete(document.getElementById("prof"), libprof, 3);
+autocomplete(document.getElementById("cadreprof"), cadre_prof, 0);
+
+/* Fonction executé lorsque l'utilisateur appuis sur le bouton "coder" */
+function code(){
+	$.ajax({
+	    type: "GET",
+	    url: "/docs/btpear2017.csv",
+	    dataType: "text",
+	    success: function(data) {findCode(data, document.getElementById("prof").value, document.getElementById("cadreprof").value);}
+	 }); 
+}
+
+/* recherche le code du libellé avec les données données par l'utilisateur */
+function findCode(allText, valProf, valCadreProf){
+	if(valProf.length > 4 && valCadreProf.length > 4){
+	   var lines = allText.split(/\r\n|\n/)
+	   var linesctn = 0;
+	   for(var i=0; i<lines.length; i++){
+	   		if(lines[i].search(new RegExp(","+valProf+","+cadre_prof_inv[valCadreProf])) >= 0){
+	   			console.log(lines[i]);
+	   			linesctn++;
+	   			var line = lines[i].split(',');
+	 			var b = document.getElementById("code")
+	 			b.innerHTML = "Le code de votre profession est : <strong>"+line[1]+"</strong>.";
+	   		}
+	   }
+	   if(linesctn == 0){
+	   	var b = document.getElementById("code")
+	   	b.innerHTML = "Le code de votre profession n'a pas été trouvé."
+	   }
+	}
+
+}
