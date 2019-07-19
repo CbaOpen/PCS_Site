@@ -627,10 +627,11 @@ ol ol {
 
 
 .list-pages-accueil {
-  padding-left: 0;
-  list-style: none;
+  list-style-type: disc;
   color:/*black;#FFE066*/#ffffff;
-  font-size: 21px;
+  font-size: 16px;
+  list-style-position: inside;
+  
 }
 
 .list-footer{
