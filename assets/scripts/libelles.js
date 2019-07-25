@@ -3,13 +3,7 @@ var libprof = [];
 /* tableau des mots non signifiants */
 var non_signif_words = ["À","AU","D'UN","DANS","DE","DES","DU","EN","ET","LA","LE","OU","SUR","AUX","POUR","AVEC", "CHEZ","D’UNE","D’","L’","PAR",
                       "(",")","/","-"]
-/* Cadre de la profession */
-var cadre_prof = {'priv_cad': "Salarié du privé cadre", 'priv_tec' : "Salarié du privé technicien", 'priv_am' : "Salarié du privé agent de maintenance", 'priv_emp' : "Salarié du privé, employé",
-				'priv_oq' : "Salarié du privé, ouvrier qualifié", 'priv_onq' : "Salarié du privé, ouvrier non qualifié", 'priv_nr' : "Salarié du privé, valeur par défaut",
-				'pub_catA' : "Salarié du public de catégorie A", 'pub_catB' : "Salarié du public de catégorie B", 'pub_catC' : "Salarié du public de catégorie C",
-				'pub_nr' : "Salarié du public, valeur par défaut", 'sal_par' : "Salarié particulier", 'inde_0_9' : "Non salarié, entreprise de moins de 10 employés",
-				'inde_10_49' : "Non salarié, entreprise d’entre 10 et 49 employés", 'inde_50_499' : "Non salarié, entreprise d’entre 50 et 499 employés",'inde>500' : "Non salarié, entreprise de plus de 500 employés",
-				'inde_nr' : "Non salarié, valeur par défaut",'aid_fam' : "Aide familial",'ssvaran' : "Autre"}
+
 /* Cadre de la profession inversé */
 var cadre_prof_inv = {"Salarié du privé cadre":'priv_cad', "Salarié du privé technicien":'priv_tec', "Salarié du privé agent de maintenance":'priv_am', "Salarié du privé, employé":'priv_emp',
 				"Salarié du privé, ouvrier qualifié":'priv_oq', "Salarié du privé, ouvrier non qualifié":'priv_onq', "Salarié du privé, valeur par défaut":'priv_nr',
@@ -43,6 +37,7 @@ function processData(allText) {
 function autocomplete(inp, arr, min_letters) {
   var currentFocus;
   inp.addEventListener("input", function(e) {
+console.log(statut)
       var a, b, i, val = this.value;
       
       /* Ferme toutes les listes ouvertes de valeurs autocomplétées */
@@ -161,16 +156,12 @@ function is_significant(word, tab_non_signif){
   }
   return true;
 }
-var testArr = ["est aux miel", "test"]
-/*initiate the autocomplete function on the "prof" element, and pass along the libprof array as possible autocomplete values:*/
-autocomplete(document.getElementById("prof"), libprof, 3);
-autocomplete(document.getElementById("cadreprof"), cadre_prof, 0);
 
 /* Fonction executé lorsque l'utilisateur appuis sur le bouton "coder" */
 function code(){
 	$.ajax({
 	    type: "GET",
-	    url: "/docs/btpear2017.csv",
+	    url: "/docs/index_alphabetique_numerique_compact.csv",
 	    dataType: "text",
 	    success: function(data) {findCode(data, document.getElementById("prof").value, document.getElementById("cadreprof").value);}
 	 }); 
@@ -197,3 +188,7 @@ function findCode(allText, valProf, valCadreProf){
 	}
 
 }
+
+
+/*initiate the autocomplete function on the "prof" element, and pass along the libprof array as possible autocomplete values:*/
+autocomplete(document.getElementById("prof"), libprof, 3);
