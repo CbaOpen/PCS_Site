@@ -1,5 +1,5 @@
 
-var statut;
+var statut = "...";
 /* statut de la profession */
 var cadre_prof = {'priv_cad': "Salarié du privé cadre", 'priv_tec' : "Salarié du privé technicien", 'priv_am' : "Salarié du privé agent de maintenance", 'priv_emp' : "Salarié du privé, employé",
         'priv_oq' : "Salarié du privé, ouvrier qualifié", 'priv_onq' : "Salarié du privé, ouvrier non qualifié", 'priv_nr' : "Salarié du privé, valeur par défaut",
@@ -14,8 +14,10 @@ var statut_pub = {"Catégorie A": 'catA', "Catégorie B": 'catB', "Catégorie C"
 
 var inde = {"Entreprise moins de 10 employés": '_0_9', "Entreprise entre 10 et 49 employés": '_10_49', "Entreprise entre 50 et 499": '_50_499', "Entreprise de plus de 500 employés": '>500', "Autre": '_nr'}
 
+/* Pose les questions pour avoir le statut de la profession */
 function get_status(inp){
   var pos_prof, st_prof="", st_inde = "";
+  /* Question 1 */
   var a = document.createElement("OPTION")
   a.innerHTML = "<option value='...'>...</option>"
   inp.appendChild(a)
@@ -29,12 +31,18 @@ function get_status(inp){
   a.innerHTML = "<option value='ssvaran'>Autre</option>"
   inp.appendChild(a)
   inp.addEventListener("input", function(e){
+    /* Question 2 */
     var rep = document.getElementById("statut_prof")
     rep.innerHTML = ""
     if(this.value != '...'){
       pos_prof = this.value
-      if(pos_prof=="Autre")
+      if(pos_prof=="Autre"){
         concat_status("ssvaran", st_prof, st_inde)
+        a = document.getElementById("statut")
+        a.innerHTML = ''
+        a = document.getElementById("inde")
+        a.innerHTML = ""
+      }
       else{
         a = document.getElementById("statut")
         a.innerHTML = "Quel est votre statut ? "
@@ -55,6 +63,7 @@ function get_status(inp){
           b.appendChild(c)
         }
         b.addEventListener("input", function(e){
+          /* Question 3 */
           var rep = document.getElementById("statut_prof")
           rep.innerHTML = ""
           if(this.value != '...'){
@@ -103,6 +112,7 @@ function get_status(inp){
   })
 }
 
+/* Concatène le résultat des 3 questions */
 function concat_status(pos_prof, st_prof, st_inde){
   if(st_prof == "inde")
     statut = st_prof+st_inde
@@ -121,7 +131,4 @@ function concat_status(pos_prof, st_prof, st_inde){
 
 }
 
-
-
-/*initiate the autocomplete function on the "prof" element, and pass along the libprof array as possible autocomplete values:*/
 get_status(document.getElementById("pos_prof"))
