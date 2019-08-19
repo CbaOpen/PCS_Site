@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Coder un fichier de données
+title: coder
 permalink: /collecter/outils_codification/coder
 ---
       <div class="col-sm-2">
@@ -22,15 +22,22 @@ permalink: /collecter/outils_codification/coder
             <form autocomplete="off" action="#">
                 <div class="autocomplete" style="width:300px;">
                     <input id="prof" type="text" name="myprof" placeholder="Profession">
-                </div>
-                <div class="autocomplete" style="width:300px;">
-                    <input type="text" name="nat_prof" id="cadreprof" placeholder="Salarié du privé/public/..">
-                </div>
+                </div><br>
+                <div class="autocomplete">
+                    Quelle est votre position professionnelle ? 
+                    <select id="pos_prof" name="posprof"></select>
+                </div><br>
+                <div class="autocomplete" id="statut"></div><br>
+                <div class="autocomplete" id="inde"></div><br>
+                <div id="statut_prof"></div><br>
                 <input type="button" onclick="code()" value="Coder">
+                <br>
                 <div id="code"></div>
             </form>
             <br>
+
             <p class="section-paragraph"><a href="/docs/profbtp.csv">Exporter le fichier des professions</a></p>
 
         </div>
         <script src="/assets/scripts/libelles.js"></script>
+        <script src="/assets/scripts/libprof.js"></script>

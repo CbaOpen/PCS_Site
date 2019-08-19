@@ -15,7 +15,8 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="/decouvrir/" class="dropdown-toggle"><i class="fa fa-book"></i> Découvrir<span class="caret"></span></a>
+              <a href="/decouvrir/" class="dropdown-toggle"><i class="fa fa-book"></i>{% if page.title == "decouvrir" %} <strong>Découvrir</strong>
+              	{% else %} Découvrir {% endif %} <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/decouvrir/histoire">Principes, histoire, production, usages</a></li>
                 <li><a href="/decouvrir/guides">Guides de documentation</a></li>
@@ -25,7 +26,8 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="/naviguer" class="dropdown-toggle"><i class="fa fa-paper-plane"></i> Naviguer<span class="caret"></span></a>
+              <a href="/naviguer" class="dropdown-toggle"><i class="fa fa-paper-plane"></i>{% if page.title == "naviguer" %} <strong>Naviguer</strong>
+              	{% else %} Naviguer {% endif %}<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/naviguer/PCS">La PCS</a></li>
                 <li><a href="/naviguer/classes_emploi">Classes et sous-classes d'emploi</a></li>
@@ -34,7 +36,8 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="/decrire" class="dropdown-toggle" ><i class="fa fa-bar-chart"></i> Décrire<span class="caret"></span></a>
+              <a href="/decrire" class="dropdown-toggle" ><i class="fa fa-bar-chart"></i>{% if page.title == "decrire" %} <strong>Décrire</strong>
+              	{% else %} Décrire {% endif %}<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/decrire/portraits/">Portraits de groupes</a></li>
                 <li><a href="/decrire/societe/">La société en quelques thèmes</a></li>
@@ -44,7 +47,8 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="/collecter" class="dropdown-toggle"><i class="fa fa-cogs"></i> Coder<span class="caret"></span></a>
+              <a href="/collecter" class="dropdown-toggle"><i class="fa fa-cogs"></i>{% if page.title == "coder" %} <strong>Coder</strong>
+              	{% else %} Coder {% endif %}<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/collecter/instruments_collecte/">Instruments de collecte</a></li>
                 <li><a href="/collecter/outils_codification/">Outils de codification</a></li>
@@ -54,7 +58,8 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="/apropos" class="dropdown-toggle"><i class="fa fa-info"></i> Informations pratiques<span class="caret"></span></a>
+              <a href="/apropos" class="dropdown-toggle"><i class="fa fa-info"></i>{% if page.title == "info" %} <strong>Informations pratiques</strong>
+              	{% else %} Informations pratiques {% endif %}<span class="caret"></span></a>
               <ul class="dropdown-menu">
 	        <li><a href="#">Qui sommes-nous</a></li>
                 <li><a href="#">Contacts</a></li>
