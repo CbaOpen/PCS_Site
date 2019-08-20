@@ -302,6 +302,20 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+a-no-color{
+  /* liens */
+  text-decoration: none;
+}
+a-no-color:hover,
+a-no-color:focus {
+  color: #164b62;
+  text-decoration: underline;
+}
+a-no-color:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
 figure {
   margin: 0;
 }
@@ -628,11 +642,15 @@ ol ol {
 
 
 .list-pages-accueil {
-  list-style-type: disc;
+  /*list-style-type: disc;*/
   color:/*black;#FFE066*/#ffffff;
   font-size: 16px;
   list-style-position: inside;
-  
+  list-style-type: none;
+}
+
+.list-pages-accueil > li{
+	margin-bottom: 7px;
 }
 
 .list-footer{

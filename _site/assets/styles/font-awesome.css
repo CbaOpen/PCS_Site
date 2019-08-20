@@ -322,6 +322,9 @@
 .fa-camera:before {
   content: "\f030";
 }
+.fa-scroll:before {
+  content: "\f70e";
+}
 .fa-font:before {
   content: "\f031";
 }

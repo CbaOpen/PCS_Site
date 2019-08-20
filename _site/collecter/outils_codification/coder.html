@@ -42,7 +42,7 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="/decouvrir/" class="dropdown-toggle"><i class="fa fa-book"></i> Découvrir<span class="caret"></span></a>
+              <a href="/decouvrir/" class="dropdown-toggle"><i class="fa fa-book"></i> Découvrir  <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/decouvrir/histoire">Principes, histoire, production, usages</a></li>
                 <li><a href="/decouvrir/guides">Guides de documentation</a></li>
@@ -52,7 +52,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="/naviguer" class="dropdown-toggle"><i class="fa fa-paper-plane"></i> Naviguer<span class="caret"></span></a>
+              <a href="/naviguer" class="dropdown-toggle"><i class="fa fa-paper-plane"></i> Naviguer <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/naviguer/PCS">La PCS</a></li>
                 <li><a href="/naviguer/classes_emploi">Classes et sous-classes d'emploi</a></li>
@@ -61,7 +61,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="/decrire" class="dropdown-toggle" ><i class="fa fa-bar-chart"></i> Décrire<span class="caret"></span></a>
+              <a href="/decrire" class="dropdown-toggle" ><i class="fa fa-bar-chart"></i> Décrire <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/decrire/portraits/">Portraits de groupes</a></li>
                 <li><a href="/decrire/societe/">La société en quelques thèmes</a></li>
@@ -71,7 +71,8 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="/collecter" class="dropdown-toggle"><i class="fa fa-cogs"></i> Coder<span class="caret"></span></a>
+              <a href="/collecter" class="dropdown-toggle"><i class="fa fa-cogs"></i> <strong>Coder</strong>
+              	<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/collecter/instruments_collecte/">Instruments de collecte</a></li>
                 <li><a href="/collecter/outils_codification/">Outils de codification</a></li>
@@ -81,7 +82,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="/apropos" class="dropdown-toggle"><i class="fa fa-info"></i> Informations pratiques<span class="caret"></span></a>
+              <a href="/apropos" class="dropdown-toggle"><i class="fa fa-info"></i> Informations pratiques <span class="caret"></span></a>
               <ul class="dropdown-menu">
 	        <li><a href="#">Qui sommes-nous</a></li>
                 <li><a href="#">Contacts</a></li>
@@ -132,18 +133,25 @@
             <form autocomplete="off" action="#">
                 <div class="autocomplete" style="width:300px;">
                     <input id="prof" type="text" name="myprof" placeholder="Profession">
-                </div>
-                <div class="autocomplete" style="width:300px;">
-                    <input type="text" name="nat_prof" id="cadreprof" placeholder="Salarié du privé/public/..">
-                </div>
+                </div><br>
+                <div class="autocomplete">
+                    Quelle est votre position professionnelle ? 
+                    <select id="pos_prof" name="posprof"></select>
+                </div><br>
+                <div class="autocomplete" id="statut"></div><br>
+                <div class="autocomplete" id="inde"></div><br>
+                <div id="statut_prof"></div><br>
                 <input type="button" onclick="code()" value="Coder">
+                <br>
                 <div id="code"></div>
             </form>
             <br>
+
             <p class="section-paragraph"><a href="/docs/profbtp.csv">Exporter le fichier des professions</a></p>
 
         </div>
         <script src="/assets/scripts/libelles.js"></script>
+        <script src="/assets/scripts/libprof.js"></script>
 
           <br>
           <hr>
