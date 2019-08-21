@@ -21,17 +21,18 @@ permalink: /collecter/outils_codification/coder
             <h2 class="section-heading">Trouvez le code de libellé de profession : </h2>
             <form autocomplete="off" action="#">
                 <div class="autocomplete" style="width:300px;">
+Quelle est votre profession ? 
                     <input id="prof" type="text" name="myprof" placeholder="Profession">
                 </div><br>
-                <div class="autocomplete">
-                    Quelle est votre position professionnelle ? 
-                    <select id="pos_prof" name="posprof"></select>
+<div id="rep_autocompletion"></div><br>
+                <div hidden class="autocomplete" id="statut">
+                    Êtes-vous ?
+                    <select id="statut_prof" name="statutprof"></select>
                 </div><br>
-                <div class="autocomplete" id="statut"></div><br>
-                <div class="autocomplete" id="inde"></div><br>
-                <div id="statut_prof"></div><br>
-                <input type="button" onclick="code()" value="Coder">
-                <br>
+                <div hidden class="autocomplete" id="position"></div>
+<div id="res_statut"></div><br>
+            <!--    <input hidden type="button" onclick="code()" value="Coder" id="bouton_coder"> <br> -->
+                
                 <div id="code"></div>
             </form>
             <br>

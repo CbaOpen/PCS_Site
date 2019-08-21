@@ -25,16 +25,26 @@ function processData(allText) {
 /* Autocompletion 
 	inp : input rentré par l'utilisateur dans la barre de recherche 
 	arr : Le tableau dans lequel chercher les mots
-	min_letters : nombre minimum de lettre que l'utilisateur doit rentrer avant que l'autocomletion se lance */
+	min_letters : nombre minimum de lettre que l'utilisateur doit rentrer avant que l'autocompletion se lance */
 function autocomplete(inp, arr, min_letters) {
   var currentFocus;
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
-      
+      rep=document.getElementById('rep_autocompletion');
       /* Ferme toutes les listes ouvertes de valeurs autocomplétées */
       closeAllLists();
-      if (!val) { return false;}
+      if (!val) { 
+		rep.innerHTML = "";
+		document.getElementById('statut').style.display = "none";
+		document.getElementById('statut').style.visibility = "hidden";
+		return false;}
+      if(val.length < min_letters){  
+		rep.innerHTML = "Vous devez rentrer au moins 3 lettres pour avoir des proposition de profession";
+		document.getElementById('statut').style.display = "none";
+		document.getElementById('statut').style.visibility = "hidden";
+		  }
         if(val.length >= min_letters){
+		rep.innerHTML = ""	
         currentFocus = -1;
         /* Crée une balise div qui contiendra toutes les valeurs autocomplétées */
         a = document.createElement("DIV");
@@ -55,6 +65,8 @@ function autocomplete(inp, arr, min_letters) {
                 closeAllLists();
             });
             a.appendChild(b);
+            /* un mot a été trouvé, donc le metier peut exister */
+            var metier_trouve = true;
           }
           /* Teste pour tous les autres mots du tableau si l'input matche */
           else if(valSplit.length > 1){
@@ -77,9 +89,22 @@ function autocomplete(inp, arr, min_letters) {
                 break;
               }
             }
-          }
+          } 
+          
         }
-      }
+        /* aucun métier trouvé dans la liste */
+		if(!metier_trouve){
+			rep.innerHTML = "Votre libellé n’est pas dans la liste, merci de le vérifier. Si vous confirmez votre déclaration nous nous excusons pour cet oubli.";
+			document.getElementById('statut').style.display = "none";
+			document.getElementById('statut').style.visibility = "hidden";
+		}
+		/* métier trouvé, on peut passer à la question suivante */
+		else if(metier_trouve){
+			document.getElementById('statut').style.display = "block";
+			document.getElementById('statut').style.visibility = "visible";
+		}
+	}
+      
   });
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
@@ -137,6 +162,7 @@ function autocomplete(inp, arr, min_letters) {
       closeAllLists(e.target);
   });
 }
+/* fin fonction autocompletion*/
 
 
 /* Test si un mot est signifiant ou non */
@@ -148,38 +174,9 @@ function is_significant(word, tab_non_signif){
   return true;
 }
 
-/* Fonction executé lorsque l'utilisateur appuis sur le bouton "coder" */
-function code(){
-	$.ajax({
-	    type: "GET",
-	    url: "/docs/index_alphabetique_numerique_compact.csv",
-	    dataType: "text",
-	    success: function(data) {findCode(data, document.getElementById("prof").value, statut);}
-	 }); 
-}
 
-/* recherche le code du libellé avec les données données par l'utilisateur */
-function findCode(allText, valProf, statut){
-	var b = document.getElementById("code")
-	b.innerHTML = ""
-	if(statut == "..."){
-	   	b.innerHTML = "Veuillez donner le statut de votre profession";
-	}
-	if(valProf.length > 4 && statut.length > 4){
-	   var lines = allText.split(/\r\n|\n/)
-	   var headertmp = lines[0].split(',')
-	   var header = {};
-	   for(var i =0; i<headertmp.length; i++)
-	   		header[headertmp[i]] = i
-	    for(var i=1; i<lines.length; i++){
-	    	var l = lines[i].split(',')
-	    	if(l[header['libm']] == valProf || l[header['libf']] == valProf){
-	    		b.innerHTML = "Le code de votre profession est : <strong>"+l[header[statut]]+"</strong>.";
-	    	}
-	    }
-	}
 
-}
+
 
 
 /*initiate the autocomplete function on the "prof" element, and pass along the libprof array as possible autocomplete values:*/

@@ -129,15 +129,16 @@
         <div class="col-sm-10" >
             <h1 class="section-heading">Modules de questionnaire nécessaire au codage</h1>
             <form autocomplete="off" action="#">
+                <div class="autocomplete" id="statut">
+                    Êtes-vous ?
+                    <select id="statut_prof" name="statutprof"></select>
+                </div><br>
+                <div hidden class="autocomplete" id="position"></div>
+<div id="res_statut"></div><br>
+            <!--    <input hidden type="button" onclick="code()" value="Coder" id="bouton_coder"> <br> -->
                 
-            <div class="autocomplete">
-                Quelle est votre position professionnelle ? 
-                <select id="pos_prof" name="posprof"></select>
-            </div><br>
-            
-            <div class="autocomplete" id="statut"></div><br>
-            <div class="autocomplete" id="inde"></div><br>
-        </form><br>
+                <div id="code"></div>
+            </form>
         <div id="statut_prof"></div>
 <br>
 
