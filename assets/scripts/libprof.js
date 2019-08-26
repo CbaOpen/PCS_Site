@@ -56,9 +56,7 @@ function get_status(inp){
 	res_statut.innerHTML=""
 	var res_code = document.getElementById("code")
 	res_code.innerHTML = ""
-	/*var bouton_coder = document.getElementById("bouton_coder")
-	bouton_coder.style.display = "none";
-	bouton_coder.style.visibility = "hidden";*/
+
 	/* Choix ... */ 
     if(this.value != '...'){
       var statut = this.value
@@ -67,8 +65,6 @@ function get_status(inp){
       if(statut=="non rémunéré, mais travaillez (ou travailliez) avec un membre de votre famille"){
 		concat_status(code_statut, "")
 		code()
-		/*bouton_coder.style.display = "block";
-		bouton_coder.style.visibility = "visible";*/
       }
       /* Question 3*/
       else{
@@ -106,8 +102,6 @@ function get_status(inp){
 			var position_prof = this.value
 			var code_position = arr[this.value]
 			concat_status(code_statut, code_position)
-		/*	bouton_coder.style.display = "block";
-			bouton_coder.style.visibility = "visible";*/
 			code()}
   })
 }}

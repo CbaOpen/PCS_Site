@@ -1,3 +1,5 @@
+/* LIBELLES */
+
 /*Tableau contenant toutes les prefessions du bâtiment */
 var libprof = [];
 /* tableau des mots non signifiants */
@@ -28,20 +30,28 @@ function processData(allText) {
 	min_letters : nombre minimum de lettre que l'utilisateur doit rentrer avant que l'autocompletion se lance */
 function autocomplete(inp, arr, min_letters) {
   var currentFocus;
+  var statut = document.getElementById('statut')
+  var position = document.getElementById('position')
   inp.addEventListener("input", function(e) {
       var a, b, i, val = this.value;
       rep=document.getElementById('rep_autocompletion');
       /* Ferme toutes les listes ouvertes de valeurs autocomplétées */
       closeAllLists();
+      /* rien écrit */
       if (!val) { 
 		rep.innerHTML = "";
-		document.getElementById('statut').style.display = "none";
-		document.getElementById('statut').style.visibility = "hidden";
+$('#statut option').prop('selected', function() {return this.defaultSelected;});
+	statut.style.display = "none";
+	statut.style.visibility = "hidden";
+$('#position option').prop('selected', function() {return this.defaultSelected;});
+	position.style.display = "none";
+	position.style.visibility = "hidden";
+	res_statut.innerHTML=""
+	code.innerHTML = ""
 		return false;}
+		/* moins de  lettres */
       if(val.length < min_letters){  
 		rep.innerHTML = "Vous devez rentrer au moins 3 lettres pour avoir des proposition de profession";
-		document.getElementById('statut').style.display = "none";
-		document.getElementById('statut').style.visibility = "hidden";
 		  }
         if(val.length >= min_letters){
 		rep.innerHTML = ""	
@@ -95,8 +105,6 @@ function autocomplete(inp, arr, min_letters) {
         /* aucun métier trouvé dans la liste */
 		if(!metier_trouve){
 			rep.innerHTML = "Votre libellé n’est pas dans la liste, merci de le vérifier. Si vous confirmez votre déclaration nous nous excusons pour cet oubli.";
-			document.getElementById('statut').style.display = "none";
-			document.getElementById('statut').style.visibility = "hidden";
 		}
 		/* métier trouvé, on peut passer à la question suivante */
 		else if(metier_trouve){

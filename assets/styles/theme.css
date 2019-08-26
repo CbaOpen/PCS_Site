@@ -4120,9 +4120,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: /*#FFE066;#50514f*//*#8A8B88 #949494 #D3D3D3*/#B03D14;
+  background-color: /*#FFE066;#50514f*//*#8A8B88 #949494 #D3D3D3#*/#B03D14;
   /*header*/
-  border-color: /*#3f403f*/#949494;
+  border-color: /*#3f403f #949494*/ #B03D14;
   color:black;
 }
 .navbar-default .navbar-brand {
