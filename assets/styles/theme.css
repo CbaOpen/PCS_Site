@@ -204,6 +204,20 @@ th {
   a[href^="#"]:after {
     content: "";
   }
+  a-no-color,
+  a-no-color:visited {
+    text-decoration: underline;
+  }
+  a-no-color[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  a-no-color[href^="javascript:"]:after,
+  a-no-color[href^="#"]:after {
+    content: "";
+  }
   pre,
   blockquote {
   /*??*/
